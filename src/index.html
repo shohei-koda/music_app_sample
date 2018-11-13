@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GOOYA LT Sample</title>
+        <!-- at-ui style -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/at-ui-style/css/at.min.css">
+
+        <!-- origin style -->
+        <!-- ## CSSファイルの内容が反映されなかったので、インラインで記述 ## -->
+        <style>
+            header {
+                padding: 5px 10px;
+            }
+
+            #app {
+                margin: 15px;
+            }
+
+            .c-pianokey {
+                height: 100px;
+            }
+
+            .c-black {
+                background-color: #323232;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h2>サンプル</h2>
+        </header>
+        <div id="app">
+            <keybord-area></keybord-area>
+        </div>
+
+        <!-- Vue -->
+        <script src="//cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+        <!-- at-ui -->
+        <script src="//cdn.jsdelivr.net/npm/at-ui/dist/at.min.js"></script>
+        <!-- tone -->
+        <script src="//tonejs.github.io/build/Tone.min.js"></script>
+
+
+        <script>
+            // 白鍵、黒鍵
+            var KeyTone = {
+                // properties
+                props: ['note', 'keyName', 'isBlack'],
+                // origin methods
+                methods: {
+                    playKey: function(key) {
+                        var synth = new Tone.Synth().toMaster()
+                        // 8分音符で
+                        synth.triggerAttackRelease(key, '8n')
+                    }
+                },
+                // component template
+                template: '<at-button @click="playKey(note)" :class="[isBlack? \'c-pianokey c-black\' : \'c-pianokey\']"></at-button>'
+            }
+            // 鍵盤
+            var KeybordTone = {
+                // data
+                data: function() {
+                    return {
+                        keys: [
+                            // { note: 'C1', isBlack: false },
+                            // { note: 'C1#', isBlack: true },
+                            // { note: 'D1', isBlack: false },
+                            // { note: 'D1#', isBlack: true },
+                            // { note: 'E1', isBlack: false },
+                            // { note: 'F1', isBlack: false },
+                            // { note: 'F1#', isBlack: true },
+                            // { note: 'G1', isBlack: false },
+                            // { note: 'G1#', isBlack: true },
+                            // { note: 'A1', isBlack: false },
+                            // { note: 'A1#', isBlack: true },
+                            // { note: 'B1', isBlack: false },
+                            // { note: 'C2', isBlack: false },
+                            // { note: 'C2#', isBlack: true },
+                            // { note: 'D2', isBlack: false },
+                            // { note: 'D2#', isBlack: true },
+                            // { note: 'E2', isBlack: false },
+                            // { note: 'F2', isBlack: false },
+                            // { note: 'F2#', isBlack: true },
+                            // { note: 'G2', isBlack: false },
+                            // { note: 'G2#', isBlack: true },
+                            // { note: 'A2', isBlack: false },
+                            // { note: 'A2#', isBlack: true },
+                            // { note: 'B2', isBlack: false },
+                            { note: 'C3', isBlack: false, name: 'ド' },
+                            { note: 'C3#', isBlack: true, name: 'ド#' },
+                            { note: 'D3', isBlack: false, name: 'レ' },
+                            { note: 'D3#', isBlack: true, name: 'レ#' },
+                            { note: 'E3', isBlack: false, name: 'ミ' },
+                            { note: 'F3', isBlack: false, name: 'ファ' },
+                            { note: 'F3#', isBlack: true, name: 'ファ#' },
+                            { note: 'G3', isBlack: false, name: 'ソ' },
+                            { note: 'G3#', isBlack: true, name: 'ソ#' },
+                            { note: 'A3', isBlack: false, name: 'ラ' },
+                            { note: 'A3#', isBlack: true, name: 'ラ#' },
+                            { note: 'B3', isBlack: false, name: 'シ' },
+                            { note: 'C4', isBlack: false, name: 'ド' },
+                            { note: 'C4#', isBlack: true, name: 'ド#' },
+                            { note: 'D4', isBlack: false, name: 'レ' },
+                            { note: 'D4#', isBlack: true, name: 'レ#' },
+                            { note: 'E4', isBlack: false, name: 'ミ' },
+                            { note: 'F4', isBlack: false, name: 'ファ' },
+                            { note: 'F4#', isBlack: true, name: 'ファ#' },
+                            { note: 'G4', isBlack: false, name: 'ソ' },
+                            { note: 'G4#', isBlack: true, name: 'ソ#' },
+                            { note: 'A4', isBlack: false, name: 'ラ' },
+                            { note: 'A4#', isBlack: true, name: 'ラ#' },
+                            { note: 'B4', isBlack: false, name: 'シ' },
+                            // { note: 'C5', isBlack: false },
+                            // { note: 'C5#', isBlack: true },
+                            // { note: 'D5', isBlack: false },
+                            // { note: 'D5#', isBlack: true },
+                            // { note: 'E5', isBlack: false },
+                            // { note: 'F5', isBlack: false },
+                            // { note: 'F5#', isBlack: true },
+                            // { note: 'G5', isBlack: false },
+                            // { note: 'G5#', isBlack: true },
+                            // { note: 'A5', isBlack: false },
+                            // { note: 'A5#', isBlack: true },
+                            // { note: 'B5', isBlack: false }
+                        ]
+                    }
+                },
+                // component template
+                template: '<at-button-group><keys v-for="key in keys" :key="key.note" :note="key.note" :key-name="key.name" :is-black="key.isBlack"></keys></at-button-group>',
+                // use component
+                components: {
+                    'keys': KeyTone
+                }
+            }
+
+            // Vue　インスタンス
+            new Vue({
+                // render element
+                el: '#app',
+                // use component
+                components: {
+                    'keybordArea': KeybordTone
+                }
+            })
+        </script>
+    </body>
+</html>
