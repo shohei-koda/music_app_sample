@@ -1,9 +1,0 @@
-version: '3'
-services:
-  web:
-    image: nginx:1.15
-    volumes:
-      - ./src:/var/www/html
-      - ./etc/nginx:/etc/nginx/conf.d
-    ports:
-      - "8080:80"
